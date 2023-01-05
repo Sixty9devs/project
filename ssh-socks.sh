@@ -35,7 +35,7 @@ PASS = ''
 BUFLEN = 4096 * 4
 TIMEOUT = 60
 DEFAULT_HOST = '127.0.0.1:143'
-RESPONSE = 'HTTP/1.1 101 PINAS VPN (69devs) \r\n\r\n'
+RESPONSE = 'HTTP/1.1 101 PINAS VPN \r\n\r\n'
 
 
 class Server(threading.Thread):
@@ -718,3 +718,53 @@ cat /dev/null > ~/.bash_history && history -c && history -w
 
 
 
+YTBOr/4Oora6jYAG3gFDn6pwHK6SM1Iy0
+xdnSR8pYhuw1OjnZhg6QV2lk68dM
+-----END CERTIFICATE-----
+EOF
+
+
+cat <<EOF >/etc/stunnel/stunnel.conf
+cert = /etc/stunnel/stunnel.pem
+client = no
+socket = a:SO_REUSEADDR=1
+socket = l:TCP_NODELAY=1
+socket = r:TCP_NODELAY=1
+[sts]
+connect = 127.0.0.1:143
+accept = 443
+[gtm]
+connect = 127.0.0.1:555
+accept = 4443
+EOF
+
+cd /etc/default && rm stunnel4
+cat <<EOF >stunnel4
+echo 'ENABLED=1
+FILES="/etc/stunnel/*.conf"
+OPTIONS=""
+PPP_RESTART=0
+RLIMITS=""'
+EOF
+
+chmod 755 stunnel4
+update-rc.d stunnel4 defaults
+systemctl enable stunnel4
+systemctl restart stunnel4
+
+cd
+chmod 600 /etc/stunnel/stunnel.pem
+echo "/sbin/nologin" >> /etc/shells
+printf "\nAllowUsers root" >> /etc/ssh/sshd_config
+echo "0 4 * * * root /sbin/reboot" > /etc/cron.d/reboot
+useradd $USER
+echo "$USER:$PASS" | chpasswd
+
+
+clear
+netstat -tunlp
+
+sleep 3s
+rm -rf *.sh &> /dev/null
+cat /dev/null > ~/.bash_history && history -c && history -w
+  echo "Server will 
