@@ -1,1 +1,135 @@
-implementation 'com.google.android.material:material:1.6.0-alpha02'
+FloatingActionButton floatingActionButton;
+BottomAppBar bottomAppBar;
+private BottomSheetBehavior<View> bottomSheetBehavior;
+private View bshl;
+
+
+bottomAppBar = findViewById(R.id.bottomAppBar);
+		bottomAppBar.setFabAlignmentMode(BottomAppBar.FAB_ALIGNMENT_MODE_END);
+     //  new OpenVPNAppRate(this).setMinDaysUntilPrompt(14).setMinLaunchesUntilPrompt(10).init();
+		bottomAppBar.setNavigationOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					
+				}
+			});
+		
+		View bottomSheet = findViewById(R.id.bottom_sheet); 
+		this.bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
+		this.bshl = findViewById(R.id.bshl);
+		this.iv1 = (ImageView)findViewById(R.id.ivLogsDown);
+		bshl.setOnClickListener(new OnClickListener(){
+				@Override
+				public void onClick(View p1)
+				{
+					if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_COLLAPSED) {
+						bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+						iv1.animate().setDuration(500).rotation(180);
+					} 
+					if(bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED){
+						bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+						iv1.animate().setDuration(500).rotation(0);
+					}
+				}
+			});
+			
+		duration.setOnChronometerTickListener(new OnChronometerTickListener(){
+				@Override
+				public void onChronometerTick(Chronometer chronometer) {
+					long time = SystemClock.elapsedRealtime() - chronometer.getBase();
+					int h   = (int)(time /3600000);
+					int m = (int)(time - h*3600000)/60000;
+					int s= (int)(time - h*3600000- m*60000)/1000 ;
+					String t = (h < 10 ? "0"+h: h)+"h:"+(m < 10 ? "0"+m: m)+"m:"+ (s < 10 ? "0"+s: s)+"s";
+					chronometer.setText(t);
+				}
+			});
+
+
+
+
+
+
+
+
+BottomAppBar bottomAppBar=findViewById(R.id.bottomAppBar) ;
+		bottomAppBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+				@Override
+				public boolean onMenuItemClick(MenuItem item) {
+					
+					switch (item.getItemId()){
+						case R.id.item_switch:
+							darkModes();
+							break;
+						case R.id.search:
+							renew();
+							loadAd();
+							showInterstitial();
+							break;
+						case R.id.tips:
+							sts();
+							loadAd();
+							showInterstitial();
+							break;
+						case R.id.settings:
+							Intent intentSettings = new Intent(SocksHttpMainActivity.this, ConfigGeralActivity.class);
+							startActivity(intentSettings);
+							loadAd();
+							showInterstitial();
+							break;
+						case R.id.logout:
+							showExitDialog();
+							loadAd();
+							showInterstitial();
+
+							break;
+					}   
+					return true;
+				}});
+		floatingActionButton = findViewById(R.id.fav);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					doSaveData();
+					loadServerData();
+					starts();
+					mAdapter.clearLog();
+					startOrStopTunnel(SocksHttpMainActivity.this);
+					mShown = false;
+					
+					}
+
+			});
+		bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() { 
+				@Override 
+				public void onStateChanged(@NonNull View view, int i) { 
+					switch (i){ 
+						case BottomSheetBehavior.STATE_COLLAPSED: 
+							bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+							iv1.animate().setDuration(500).rotation(0);
+							break; 
+						case BottomSheetBehavior.STATE_EXPANDED: 
+							bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+							iv1.animate().setDuration(300).rotation(180);
+							break; 
+						case BottomSheetBehavior.STATE_HIDDEN: 
+							bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+							if (iv1.getRotation() == 0) {
+								iv1.animate().setDuration(500).rotation(180);
+							} else {
+								iv1.animate().setDuration(500).rotation(0);
+							}
+							break;
+					} 
+				} 
+				@Override 
+				public void onSlide(@NonNull View view, float v) { 
+
+				} 
+			});
+
+
+
+
+
+
