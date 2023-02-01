@@ -1,160 +1,47 @@
+<style name="BottomAppBarTheme" parent="Widget.MaterialComponents.BottomAppBar.Colored">
+        <item name="android:textColor">@color/white</item>
+		<item name="android:textColorPrimary">@color/white</item>
+		<!-- actionMenuTextColor is the color of the text of action (menu) items  -->
+		<item name="actionMenuTextColor">@android:color/white</item>
+    </style>
+	<style name="Fabstayle1">
+		<item name="cornerSize">50%</item>
+		<item name="cornerFamilyTopLeft">cut</item>
+		<item name="cornerFamilyTopRight">cut</item>
+		<item name="cornerFamilyBottomLeft">rounded</item>
+		<item name="cornerFamilyBottomRight">rounded</item>
+	</style>
+	
+
+
+
+
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:edson="http://schemas.android.com/apk/res-auto"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-	<include
-		layout="@layout/home1"/>
-	<RelativeLayout
-		xmlns:app="http://schemas.android.com/apk/res-auto"
-		xmlns:tools="http://schemas.android.com/tools"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent">
-
-		<androidx.coordinatorlayout.widget.CoordinatorLayout
-			xmlns:app="http://schemas.android.com/apk/res-auto"
-			xmlns:tools="http://schemas.android.com/tools"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:layout_alignParentBottom="true"
-			android:layout_marginBottom="27dp">
-
-			
-		<com.google.android.material.bottomappbar.BottomAppBar
-				android:id="@+id/bottomAppBar"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_gravity="bottom"
-			    app:backgroundTint="?attr/colorPrimary"
-			    style="@style/BottomAppBarTheme"
-			    android:textColor="#ffffff"
-			    app:tint="#ffffff"
-			    app:menu="@menu/sangalang"
-			    app:layout_scrollFlags="scroll|enterAlways"
-				app:fabCradleRoundedCornerRadius="15dp"
-				>
-			
-			</com.google.android.material.bottomappbar.BottomAppBar>
-
-			<com.google.android.material.floatingactionbutton.FloatingActionButton
-				android:id="@+id/fav"
-				android:elevation="20dp"
-				android:layout_width="wrap_content"
-				android:src="@drawable/open"
-				android:layout_height="wrap_content"
-				android:backgroundTint="?colorPrimary"
-				app:tint="#ffffff"
-				app:shapeAppearanceOverlay="@style/Fabstayle1"
-				app:layout_anchor="@id/bottomAppBar"/>
+    <item android:id="@+id/item_switch"
+		android:icon="@drawable/suns"
+        android:title="Darkmode"
 		
+        app:showAsAction="always"/>
+	
+    <item android:id="@+id/search"
+        android:title="ADD COINS"
+        app:showAsAction="always"/>
+	
+	<item android:id="@+id/tips"
+        android:title="Noload Tips"
 
-		</androidx.coordinatorlayout.widget.CoordinatorLayout>
+	/>
+	
+    <item android:id="@+id/settings"
+        android:title="Settings"
 
-		<androidx.coordinatorlayout.widget.CoordinatorLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_alignParentBottom="true"
-			android:id="@+id/mainCoordinatorLayout1"
-		>
+	/>
+    <item android:id="@+id/logout"
+        android:title="Logout"
 
-			<LinearLayout
-				android:fitsSystemWindows="false"
-				android:orientation="vertical"
-				android:id="@+id/bottom_sheet"
-				
-				app:behavior_hideable="true"
-				android:layout_width="fill_parent"
-				android:layout_height="300.0dip"
-				edson:behavior_peekHeight="29.0dip"
-				app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+	/>
 
-				<LinearLayout
-					android:background="?colorPrimary"
-					android:clickable="true"
-					android:id="@+id/bshl"
-					android:layout_width="fill_parent"
-					android:layout_height="40.0dip"
-					android:foreground="?android:selectableItemBackground"
-					android:gravity="center|center"
-					android:paddingLeft="10dp"
-					android:paddingRight="10dp">
-
-					<ImageView
-						android:id="@+id/ivLogsDown"
-						android:background="@null"
-						android:layout_width="25dp"
-						android:layout_height="30dp"
-						android:src="@drawable/arrow"
-						android:layout_marginRight="5dp"/>
-					<TextView
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:text="( Logs )"
-						android:layout_marginLeft="3dp"
-						android:textColor="#FFFFFFFF"
-						android:textStyle="bold"/>
-					<TextView
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:text="Not Connected"
-						android:id="@+id/monsour_stats"
-						android:layout_marginLeft="10dp"
-						android:textColor="#FFFFFFFF"
-						android:textStyle="bold"/>
-
-					<LinearLayout
-						android:orientation="horizontal"
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:id="@+id/stats">
-
-						<LinearLayout
-							android:orientation="horizontal"
-							android:layout_width="match_parent"
-							android:layout_height="wrap_content"
-							android:gravity="right">
-
-							<TextView
-								android:layout_width="wrap_content"
-								android:layout_height="wrap_content"
-								android:text="Config Version :"
-								android:textAppearance="?android:attr/textAppearanceSmall"
-								android:layout_marginRight="10dp"
-								android:textColor="#FFFFFFFF"
-								android:textStyle="bold"
-								android:textSize="13sp"/>
-
-							<TextView
-								android:layout_width="wrap_content"
-								android:layout_height="wrap_content"
-								android:textAppearance="?android:attr/textAppearanceSmall"
-								android:layout_marginRight="5dp"
-								android:id="@+id/version"
-								android:textColor="#FFFFFFFF"
-								android:textStyle="bold"
-								android:textSize="13sp"/>
-
-						</LinearLayout>
-
-					</LinearLayout>
-
-				</LinearLayout>
-
-				<androidx.recyclerview.widget.RecyclerView
-					android:id="@+id/recyclerLog"
-					android:gravity="start"
-					android:background="#ffffff"
-					android:layout_width="fill_parent"
-					android:layout_height="match_parent"
-					android:layout_alignParentLeft="true"/>
-
-			</LinearLayout>
-
-		</androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-	</RelativeLayout>
-
-</RelativeLayout>
-
+</menu>
