@@ -1,20 +1,81 @@
-floatingActionButton = findViewById(R.id.fav);
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					if(is_active()){
-						floatingActionButton.setImageResource(R.drawable.open);
-						submitDisconnectIntent(RETAIN_AUTH);
-				//		graph.stop();
-						//status_view1.setText("disconnected");
-					}else{
-						floatingActionButton.setImageResource(R.drawable.close);
-						//	if(new ConfigImpl(OpenVPNClient.this).getSshUsername().toString().isEmpty()){
-						//account();
-					//	graph.start();
-						start_connect();
-						return;
-						//}else if(new ConfigImpl(OpenVPNClient.this).getSshPassword().toString().isEmpty()){
-					}}
-		
-    });}
+	<LinearLayout
+				android:orientation="vertical"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:gravity="center">
+
+				<LinearLayout
+					android:orientation="horizontal"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:gravity="center">
+
+					<LinearLayout
+						android:orientation="vertical"
+						android:layout_width="100dp"
+						android:layout_height="wrap_content"
+						android:gravity="center">
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="0kb"
+							android:textAppearance="?android:attr/textAppearanceSmall"
+							android:id="@+id/bytes_out"
+							android:textSize="10sp"
+							android:textColor="#FF6E6E6E"/>
+
+					</LinearLayout>
+
+					<View
+						android:background="?android:attr/dividerHorizontal"
+						android:layout_width="1dp"
+						android:layout_height="match_parent"/>
+
+					<LinearLayout
+						android:orientation="vertical"
+						android:layout_width="100dp"
+						android:layout_height="wrap_content"
+						android:gravity="center">
+
+						<TextView
+							android:textAppearance="?android:textAppearanceSmall"
+							android:id="@+id/duration"
+							android:textStyle="bold"
+							android:textSize="10dp"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_marginLeft="5.0dip"
+							android:text="0h:00m:0s"
+							android:textColor="#FF6E6E6E"/>
+
+					</LinearLayout>
+
+					<View
+						android:background="?android:attr/dividerHorizontal"
+						android:layout_width="1dp"
+						android:layout_height="match_parent"/>
+
+					<LinearLayout
+						android:orientation="vertical"
+						android:layout_width="100dp"
+						android:layout_height="wrap_content"
+						android:gravity="center">
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="0kb"
+							android:textAppearance="?android:attr/textAppearanceSmall"
+							android:id="@+id/bytes_in"
+							android:textSize="10sp"
+							android:textColor="#FF6E6E6E"/>
+
+					</LinearLayout>
+
+				</LinearLayout>
+
+			
+			</LinearLayout>
+
+		</LinearLayout>
